@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:9000/posts";
+const url = process.env.LOCAL_URL || "https://memory-timeline-project.herokuapp.com/posts";
 
 export const fetchPosts = () => axios.get(url);
 export const createPost = (newPost) => axios.post(url, newPost);
