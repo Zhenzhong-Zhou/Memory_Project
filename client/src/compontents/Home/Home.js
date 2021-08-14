@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Container, Grid, Grow } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { getPosts } from "../../action/posts";

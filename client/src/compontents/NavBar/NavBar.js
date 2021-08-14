@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import useStyles from "./styles";

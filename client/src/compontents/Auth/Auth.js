@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { Fragment, useState } from "react";
 import { Avatar, Button, Paper, Grid, Typography, Container } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
@@ -32,10 +32,10 @@ export const Auth = () => {
                     <Grid container spacing={2}>
                         {
                             isSignup && (
-                            <React.Fragment>
+                            <Fragment>
                                 <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
                                 <Input name="lastname" label="Last Name" handleChange={handleChange} half />
-                            </React.Fragment>
+                            </Fragment>
                         )}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
