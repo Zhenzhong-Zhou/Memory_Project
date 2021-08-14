@@ -14,7 +14,9 @@ export const Auth = () => {
 
     const handleSubmit = () => {};
 
-    const handleChange = () => {};
+    const handleChange = () => {
+// finished Auth form
+    };
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
