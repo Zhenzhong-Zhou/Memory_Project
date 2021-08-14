@@ -8,18 +8,18 @@ import Input from "./Input";
 export const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
-    const isSignup = false;
+    const [isSignup, setIsSignup] = useState(false);
 
-    const handleSubmit = () => {
+    const handleShowPassword = () => setShowPassword((preShowPassword) => !preShowPassword);
 
+    const handleSubmit = () => {};
+
+    const handleChange = () => {};
+
+    const switchMode = () => {
+        setIsSignup((prevIsSignup) => !prevIsSignup);
+        handleShowPassword(false);
     };
-
-    const handleChange = () => {
-
-    }
-
-    const handleShowPassword = () => handleShowPassword(() => setShowPassword((preShowPassword) => !preShowPassword));
-
 
     return (
         <Container component="main" maxWidth="xs">
@@ -39,11 +39,20 @@ export const Auth = () => {
                         )}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword}/>
-                        { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
+                        {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
+                    </Grid>
+                    <Button type={"submit"} fullWidth variant={"contained"} color={"primary"} className={classes.submit}>
+                        {isSignup ? "Sign Up" : "Sign In"}
+                    </Button>
+                    <Grid container justifyContent={"flex-end"}>
+                        <Grid item>
+                            <Button onClick={switchMode}>
+                                {isSignup ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+                            </Button>
+                        </Grid>
                     </Grid>
                 </form>
             </Paper>
-
         </Container>
     );
 };
