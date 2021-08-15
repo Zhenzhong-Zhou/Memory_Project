@@ -3,6 +3,14 @@ import axios from "axios";
 // Need to change later: process.env.LOCAL_URL || "https://memory-timeline-project.herokuapp.com/posts";
 const API = axios.create({ baseURL: "http://localhost:9000" });
 
+// Bearer token can change Any token
+API.interceptors.request.use((req) => {
+   if (localStorage.getItem("profile")) {
+       req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem("profile")).token}`;
+   }
+   return req;
+});
+
 export const fetchPosts = () => API.get("/posts");
 export const createPost = (newPost) => API.post("/posts", newPost);
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
