@@ -8,7 +8,7 @@ import Icon from "./icon";
 import useStyles from "./styles";
 import Input from "./Input";
 import { AUTH } from "../../constants/actionTypes";
-import { signin, signup } from "../../action/auth"
+import { signin, signup } from "../../actions/auth"
 
 const initialState = { firstName: "", lastName: "", email: "", password: "", confirmPassword: "" };
 
@@ -37,7 +37,7 @@ export const Auth = () => {
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
     };
 
     const googleSuccess = async (res) => {
