@@ -11,7 +11,7 @@ export const NavBar = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
     const dispatch = useDispatch();
     const history = useHistory();
-    const loction = useLocation();
+    const location = useLocation();
 
     const logout = () => {
         dispatch({ type: LOGOUT });
@@ -22,7 +22,7 @@ export const NavBar = () => {
     useEffect(() => {
         const token = user?.token;
         setUser(JSON.parse(localStorage.getItem("profile")));
-    }, [loction]);
+    }, [location]);
 
     return (
         <AppBar className={classes.appBar} position={"static"} color={"inherit"}>
