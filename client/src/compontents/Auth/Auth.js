@@ -8,19 +8,32 @@ import Icon from "./icon";
 import useStyles from "./styles";
 import Input from "./Input";
 import { AUTH } from "../../constants/actionTypes";
+import { signin, signup } from "../../action/auth"
+
+const initialState = { firstName: "", lastName: "", email: "", password: "", confirmPassword: "" };
 
 export const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
+    const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
     const history = useHistory();
 
     const handleShowPassword = () => setShowPassword((preShowPassword) => !preShowPassword);
 
-    const handleSubmit = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (isSignup) {
+            dispatch(signup(formData, history));
+        } else {
+            dispatch(signin(formData, history));
+        }
+    };
 
-    const handleChange = () => {};
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -56,8 +69,8 @@ export const Auth = () => {
                         {
                             isSignup && (
                             <Fragment>
-                                <Input name="firstname" label="First Name" handleChange={handleChange} autoFocus half />
-                                <Input name="lastname" label="Last Name" handleChange={handleChange} half />
+                                <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
+                                <Input name="lastName" label="Last Name" handleChange={handleChange} half />
                             </Fragment>
                         )}
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
