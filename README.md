@@ -1,7 +1,8 @@
 # Memory_Project
 
 Client side / Frontend:
-- netlify: https://timeline-memory-app.netlify.app/
+- netlify: https://timeline-memory-app.netlify.app/ (old version -> backend cannot handle it)
+- netlify: https://timeline-memories.netlify.app
 - cd client
 - npm ci / npm install
 - npm start 
