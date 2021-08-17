@@ -62,7 +62,7 @@ export const Home = () => {
                         <Form currentId={ currentId } setCurrentId={ setCurrentId }/>
                         {(!searchQuery && !tags.length) && (
                             <Paper className={classes.pagination} elevation={6}>
-                                <Pagination page={page}/>
+                                <Pagination page={page} />
                             </Paper>
                         )}
                     </Grid>

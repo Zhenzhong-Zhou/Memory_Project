@@ -26,7 +26,6 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     }
 };
 
-
 export const createPosts = (post) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
