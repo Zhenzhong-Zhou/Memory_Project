@@ -17,7 +17,7 @@ app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 app.use("/", (req, res) => {
-    res.send("Welcome to Memory Back End!");
+    res.send("Welcome to Memory Backend!");
 });
 
 const PORT = process.env.PORT || 9000;
