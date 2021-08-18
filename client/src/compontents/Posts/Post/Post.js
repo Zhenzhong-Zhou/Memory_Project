@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Card, CardActions, CardContent, CardMedia, Button, ButtonBase, Typography } from "@material-ui/core";
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
@@ -13,16 +14,29 @@ const Post = ({ post, setCurrentId }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const history = useHistory();
+    const [likes, setLikes] = useState(post?.likes);
     const user = JSON.parse(localStorage.getItem('profile'));
 
+    const userId = user?.result?.googleId || user?.result?._id;
+    const hasLikedPost = post.likes.find((like) => like === userId);
+
+    const handleLike = async () => {
+        dispatch(likePost(post._id));
+
+        if (hasLikedPost) {
+            setLikes(post.likes.filter((id) => id !== userId));
+        } else {
+            setLikes([...post.likes, userId]);
+        }
+    };
+
     const Likes = () => {
-        if (post.likes.length > 0) {
-            return post.likes.find(
-                (like) => like === (user?.result?.googleId || user?.result?._id))
+        if (likes.length > 0) {
+            return likes.find((like) => like === userId)
                 ? (
-                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
+                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}` }</>
                 ) : (
-                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
                 );
         }
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
@@ -54,7 +68,7 @@ const Post = ({ post, setCurrentId }) => {
                 </CardContent>
             </ButtonBase>
             <CardActions className={classes.cardActions}>
-                <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}><Likes/></Button>
+                <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike}><Likes/></Button>
                 {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
                     <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}><DeleteIcon fontSize="small" />Delete</Button>
                 )}
