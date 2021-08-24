@@ -14,13 +14,19 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const app = express();
 const expressLayouts = require("express-ejs-layouts");
+
 const indexRouter = require("./routes/index");
+const creatorRouter = require("./routes/creators");
 // dotenv.config();
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout")
 app.use(expressLayouts);
 app.use(express.static("public"));
+
+
+app.use("/", indexRouter);
+app.use("/creators", creatorRouter);
 
 const PORT = process.env.PORT || 9000;
 const mongoose = require("mongoose");
@@ -34,7 +40,6 @@ mongoose.set("useFindAndModify", false);
 // app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // app.use(cors());
 
-app.use("/", indexRouter);
 // app.use("/posts", postRoutes);
 // app.use("/user", userRoutes);
 
