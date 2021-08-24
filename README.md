@@ -13,4 +13,4 @@ Server side / Backend:
 - heroku: https://memory-timeline-project.herokuapp.com
 - under root directory
 - npm ci / npm install
-- npm start
+- npm run devStart
