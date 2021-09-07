@@ -1,7 +1,5 @@
-// import PostMessage from "../models/postMessage.js";
-// import mongoose from "mongoose";
-const mongoose = require("mongoose");
-const PostMessage = require("../models/postMessage");
+import PostMessage from "../models/postMessage.js";
+import mongoose from "mongoose";
 
 export const getPosts = async (req, res) => {
     const { page } = req.query;
