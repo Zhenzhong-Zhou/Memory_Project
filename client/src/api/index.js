@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// Need to change later: process.env.LOCAL_URL || "https://memory-timeline-project.herokuapp.com/posts";
-const API = axios.create({ baseURL: "http://localhost:9000" });
+const API = axios.create({ baseURL: process.env.REACT_APP_SERVER_URL });
 
 // Bearer token can change Any token
 API.interceptors.request.use((req) => {

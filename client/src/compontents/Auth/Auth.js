@@ -80,7 +80,7 @@ export const Auth = () => {
                     <Button type={"submit"} fullWidth variant={"contained"} color={"primary"} className={classes.submit}>
                         {isSignup ? "Sign Up" : "Sign In"}
                     </Button>
-                    <GoogleLogin clientId="240006706550-aipjieleoivpfrllb5l2d6obctr52m2m.apps.googleusercontent.com"
+                    <GoogleLogin clientId={process.env.REACT_APP_GOOGLE_ID}
                                  render={(renderProps) => (
                                      <Button className={classes.googleButton} color={"primary"} fullWidth onClick={renderProps.onClick}
                                              disabled={renderProps.disabled} startIcon={<Icon />} variant={"contained"}>Google Sign In
